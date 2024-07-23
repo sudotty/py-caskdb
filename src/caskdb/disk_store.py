@@ -13,17 +13,18 @@ we cannot use the database.
 
 Typical usage example:
 
-    disk: DiskStorage = DiskStore(file_name="books.db")
+    disk: DiskStorage = DiskStorage(file_name="books.db")
     disk.set(key="othello", value="shakespeare")
     author: str = disk.get("othello")
     # it also supports dictionary style API too:
     disk["hamlet"] = "shakespeare"
 """
+
 import os.path
 import time
 import typing
 
-from format import KeyEntry, encode_kv, decode_kv, HEADER_SIZE, decode_header
+from caskdb.format import KeyEntry, encode_kv, decode_kv, HEADER_SIZE, decode_header
 
 # We use `file.seek` method to move our cursor to certain byte offset for read
 # or write operations. The method takes two parameters file.seek(offset, whence).
